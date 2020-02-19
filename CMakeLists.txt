@@ -556,6 +556,18 @@ IF(ENABLE_RPC)
   SET(BUILD_RPC ON CACHE BOOL "")
 ENDIF()
 
+# Build dependencies
+add_subdirectory(ext ext_build)
+include_directories(${HDF5_INCLUDE_DIR})
+include_directories(${HDF5_HL_INCLUDE_DIR})
+include_directories(${HDF5_BINARY_DIR})
+
+message(STATUS "HDF5_INCLUDE_DIR = ${HDF5_INCLUDE_DIR}")
+get_property(dirs DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY INCLUDE_DIRECTORIES)
+foreach(dir ${dirs})
+  message(STATUS "dir='${dir}'")
+endforeach()
+
 ##
 # Option to Enable HDF5
 #
@@ -574,7 +586,8 @@ ENDIF()
 # *
 ##
 OPTION(USE_HDF5 "Use HDF5." ${ENABLE_NETCDF_4})
-IF(USE_HDF5 OR ENABLE_NETCDF_4)
+IF(FALSE)
+# IF(USE_HDF5 OR ENABLE_NETCDF_4)
   SET(USE_HDF5 ON)
   SET(USE_NETCDF4 ON)
   ##
@@ -760,8 +773,8 @@ IF(USE_HDF5 OR ENABLE_NETCDF_4)
   #option to include HDF5 High Level header file (hdf5_hl.h) in case we are not doing a make install
   INCLUDE_DIRECTORIES(${HDF5_HL_INCLUDE_DIR})
 
-
-ENDIF(USE_HDF5 OR ENABLE_NETCDF_4)
+# ENDIF(USE_HDF5 OR ENABLE_NETCDF_4)
+ENDIF(FALSE)
 
 # See if we have libcurl
 FIND_PACKAGE(CURL)

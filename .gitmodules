@@ -1,0 +1,3 @@
+[submodule "ext/hdf5"]
+	path = ext/hdf5
+	url = git@github.com:leroyvn/hdf5.git
