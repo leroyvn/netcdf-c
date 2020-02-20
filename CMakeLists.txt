@@ -562,6 +562,9 @@ include_directories(${HDF5_INCLUDE_DIR})
 include_directories(${HDF5_HL_INCLUDE_DIR})
 include_directories(${HDF5_BINARY_DIR})
 
+OPTION(NC_ENABLE_HDF_16_API "Enable HDF5 1.6.x Compatibility(Required)" ON)
+SET(H5_USE_16_API ON CACHE BOOL " " FORCE)
+
 message(STATUS "HDF5_INCLUDE_DIR = ${HDF5_INCLUDE_DIR}")
 get_property(dirs DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY INCLUDE_DIRECTORIES)
 foreach(dir ${dirs})
